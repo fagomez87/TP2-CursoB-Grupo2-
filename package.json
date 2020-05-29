@@ -1,0 +1,15 @@
+{
+  "name": "pdffile",
+  "version": "1.0.0",
+  "description": "Generate a PDF file from scratch",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run test"
+  },
+  "author": "Fernando Gomez",
+  "license": "ISC",
+  "dependencies": {
+    "cypress": "^4.6.0",
+    "pdf-creator-node": "^1.4.1"
+  }
+}
