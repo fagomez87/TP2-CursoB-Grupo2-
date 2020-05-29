@@ -1,16 +1,16 @@
 var pdf = require("pdf-creator-node");
 var fs = require('fs');
-// Read HTML Template
+// lectura del template html
 var html = fs.readFileSync('template.html', 'utf8');
 
-//page format for pdf document
+// formateo de pagina del pdf
 var options = {
     format: "A3",
     orientation: "portrait",
     border: "10mm"
 };
 
-//users that will be listed in the body
+// esto es lo que se va a escribir en el pdf
 var integrantes = [
     {
         name:"Fernando",
@@ -30,6 +30,7 @@ var integrantes = [
     }
 ]
 
+// documento que se usa en el create
 var document = {
     html: html,
     data: {
@@ -38,7 +39,7 @@ var document = {
     path: "./output.pdf"
 };
 
-console.log(document);
+console.log("Documento creado correctamente");
 pdf.create(document, options)
     .then(res => {
         console.log(res)

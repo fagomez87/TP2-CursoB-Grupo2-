@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <mate charest="utf-8" />
+        <title>Prueba de creacion de PDF</title>
+    </head>
+    <body>
+        <h1>Lista de integrantes</h1>
+        <ul>
+            {{#each integrantes}}
+            <li>Nombre y apellido: {{this.name}} {{this.lastname}}</li>
+            <br>
+        {{/each}}
+        </ul>
+        <h2>Monedero virtual</h2>
+    </body>
+</html>
