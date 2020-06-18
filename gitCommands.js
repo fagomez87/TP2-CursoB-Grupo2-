@@ -1,0 +1,9 @@
+- git clone [ruta]: clonar repositorio
+- git checkout [rama]: moverse de rama
+- git pull: traer los cambios del branch
+- git status: mostrar cambios locales (que tengo yo y no están subidos)
+- git add [archivos]: añadidos archivos agregados/modificados para poder commitearlos
+- git add . : añadir todos los archivos para poder commitearlos
+- git commit -m "[comentario]": hacer commit de los archivos añadidos para poder subirlos
+- git push: subir commit con cambios a la rama.
+- git push origin master: subir commit con cambios a rama master. 
