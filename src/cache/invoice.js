@@ -1,4 +1,4 @@
-export const invoiceData =
+export const InvoiceCache =
   [{
     name: 'Mónica',
     surname: 'Bidart',

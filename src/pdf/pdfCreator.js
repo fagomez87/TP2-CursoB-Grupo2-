@@ -6,7 +6,7 @@ const defaultOptions = {
     border: "10mm"
 }
 
-const defaultPath = "./output.pdf"
+const defaultPath = "./Factura.pdf"
 
 class PdfCreator {
 
