@@ -1,0 +1,20 @@
+{
+    "integrantes": [
+        {
+            "name":"Fernando",
+            "lastname":"Gomez" 
+        },
+        {
+            "name":"Nadia",
+            "lastname":"Brizuela"
+        },
+        {
+            "name":"Monica",
+            "lastname":"Bidart"
+        },
+        {
+            "name":"Nicolas",
+            "lastname":"Ortola"
+        }
+    ]
+}
