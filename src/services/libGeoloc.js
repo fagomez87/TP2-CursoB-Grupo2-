@@ -6,33 +6,30 @@ function validarUsuario(user) {
 
 function asegurarDistanciaValida(distance) {
     if (distance < 0) {
-        throw new Error('Valor de distancia negativa')  // revisar si es correcto
+        throw new Error('Valor de distancia negativa') 
     }
 }
 
 function asegurarContenidoLista(lista) {
-    //if (!lista[0])
     if ( ! lista || lista.length == 0)  {
         throw new Error('Lista vacia')
     }
 }
 
-/************************** TO DO **************************/
 function validarSonIguales(arrA,arrB) { 
     let sonIguales = false
 
-    if( (arrA.length == arrB.length) ) {
-        // to do*********************************
-        sonIguales = true
+    if(arrA.length == arrB.length) {
+        let obj1 = JSON.stringify(arrA)
+        let obj2 = JSON.stringify(arrB)
+        sonIguales = obj1 === obj2      
     }
     return sonIguales
 }
-/************************** TO DO **************************/
-
 
 /**
- * Método que nos muestra por consola el listado con los objetos filtrados 
- * de la lista que recibe
+ * Método que retorna el listado con los objetos filtrados que cumplen 
+ * la condición 
  * @param {*} comerceList Es la lista a filtrar
  * @param {*} distance Distancia máxima para referenciar el filtrado
  * @param {*} coords Ubicación de referencia para comparar la distancia
@@ -55,19 +52,17 @@ function filterByDistance(comerceList,distance,coords) {
 }
 
  /**
-  * Calcula con la formula de HANIVIER la distancia entre dos 
-  * puntos mediante sus coordenadas geográficas
-  * @param {*} lat1 Latitud del primer punto
-  * @param {*} long1 Longitud del primer punto
-  * @param {*} lat2 Latitud del segundo punto
-  * @param {*} long2 Longitud del segundo punto
+  * Método que calcula con la formula de HANIVIER la distancia entre dos 
+  * puntos, mediante sus coordenadas geográficas
+  * @param {*} point1 primer punto de referencia
+  * @param {*} point2 segundo punto para hacer cálculo de distancia
   */
- function calcularDistancia(lat1,long1,lat2,long2) {
+ function calcularDistancia(point1, point2) {
     let radianes = Math.PI/180
-    let dlat = lat2 - lat1
-    let dlong = long2 - long1
+    let dlat = point2['latitud'] - point1['latitud']
+    let dlong = point2['longitud'] - point1['longitud']
     let radioT = 6372.795477598
-    let a = (Math.sin(radianes*dlat/2))**2 + Math.cos(radianes*lat1)*Math.cos(radianes*lat2)*(Math.sin(radianes*dlong/2))**2
+    let a = (Math.sin(radianes*dlat/2))**2 + Math.cos(radianes*point1['latitud'])*Math.cos(radianes*point2['latitud'])*(Math.sin(radianes*dlong/2))**2
     let distanc = 2 * radioT * Math.asin(Math.sqrt(a))
     return distanc     
 }
