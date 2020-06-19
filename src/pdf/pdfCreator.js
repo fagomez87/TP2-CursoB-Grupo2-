@@ -20,7 +20,6 @@ class PdfCreator {
             path: path
         }
 
-        
     }
     
     build() {

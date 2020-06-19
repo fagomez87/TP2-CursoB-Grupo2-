@@ -2,9 +2,10 @@ import { createRequire } from 'module';
 let res = createRequire(import.meta.url);
 
 import send from 'gmail-send';
+
 const defaultCredenciales = {
-    user: process.env.USER,
-    pass: process.env.PASS
+    user: 'ortpruebatp2@gmail.com',
+    pass: 'Prueba1812'
 }
 
 
