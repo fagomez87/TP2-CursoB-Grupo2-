@@ -60,7 +60,6 @@ class GMailer {
         try {
             res = await send(this.credenciales)(content);
         } catch (e){
-            console.log(e.stack)
             throw new Error("ERROR: " + e)
         }
     }
