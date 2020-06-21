@@ -31,7 +31,7 @@ export const InvoiceCache =
     surname: 'Brizuela',
     cuil: '20336758100',
     mail: "nadiaalebri@gmail.com",
-    importe: 395.50,
+    importe: 0.0,
     razonSocial: 'AMC 3620',
     cuit: '2225'
   }]

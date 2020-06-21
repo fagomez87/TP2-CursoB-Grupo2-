@@ -2,42 +2,59 @@ import fs from 'fs'
 import PdfCreator from '../pdf/pdfCreator.js'
 import Gmailer from '../mail/GMailer.js'
 
+
 //DATOS DEL PDF
-const invoicesTemplate = fs.readFileSync('/home/fernandogomez/Desktop/ORT/TP2/TP2-CursoB-Grupo2-/src/static/invoiceTemplate.html','utf8')
+const invoicesTemplate = fs.readFileSync('/home/fernandogomez/Desktop/otro/TP2-CursoB-Grupo2-/src/static/invoiceTemplate.html','utf8')
 const invoicePdf = './Factura.pdf'
 
 class CUFacturacion {
     constructor (daoObject,mailObject){
-                
-        //ESTE ES EL PDF CREADO SI NO FALLO
-        this.pdfCreator = new PdfCreator(invoicesTemplate,daoObject,'',invoicePdf)
-                
-        this.datosMail = armarDatosMail(mailObject)        
-    }
-    armarDatosMail(datos) {
 
-        const mail = {
-            to: datos.to,
+        if(this.confirmarPago(daoObject)){
+            //ESTE ES EL PDF CREADO SI NO FALLO
+            this.pdfCreator = new PdfCreator(invoicesTemplate,daoObject,null,invoicePdf)
+
+            this.datosMail = this.armarDatosMail(mailObject) 
+
+        } else {
+            throw new Error("Error al confirmar el pago: Pago no registrado")
+        }   
+    }
+
+    confirmarPago(daoObject){
+        let pago=daoObject.importe
+        let result=false
+        if(pago>0){
+            result=true
+        }
+        return result
+    }
+
+    armarDatosMail(dato) {
+        let mail = {
+            to: dato,
             subject: 'PruebaConCambios1',
             text: 'Envío correcto de mail',
             html: "<h1>Factura</h1><br>Saludos cordiales<br>",
-            files: [this.invoicePdf]
+            files: [invoicePdf]
         }
-        
         return mail;
     }
 
-    async cuFacturacion() {
-        
-        await this.pdfCreator.build()
-        let mail = new Gmailer()
+    async run() {
+
         try {
-            await mail.sendMail(this.datosMail)
-
+            await this.pdfCreator.build() 
         } catch(Error) {
-
+            throw new Error("Falla al crear el pdf")
         }
-        
+
+        try {
+            const mail = new Gmailer()
+            await mail.sendMail(this.datosMail)
+        } catch(Error) {
+            throw new Error("Error al enviar el mail")
+        } 
     }
 }
 

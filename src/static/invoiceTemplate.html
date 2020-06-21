@@ -310,16 +310,15 @@
 		<div class="container">
 			<div class="details clearfix">
 				<div class="client left">
-					<p>INVOICE TO:</p>
-					<p class="name">John Doe</p>
-					<p>796 Silver Harbour, TX 79273, US</p>
-					<a href="mailto:john@example.com">john@example.com</a>
+					<p>Destinatario:</p>
+					<p class="name">{{this.name}} {{this.surname}}</p>
+					<p class="name">{{this.cuil}}</p>
+					<a>{{this.mail}}</a>
 				</div>
 				<div class="data right">
-					<div class="title">Invoice 3-2-1</div>
+					<div class="title">Factura 3334515</div>
 					<div class="date">
-						Date of Invoice: 01/06/2014<br>
-						Due Date: 30/06/2014
+						Fecha facturacion: 25/06/2020<br>
 					</div>
 				</div>
 			</div>
@@ -327,18 +326,18 @@
 			<table border="0" cellspacing="0" cellpadding="0">
 				<thead>
 					<tr>
-						<th class="desc">Description</th>
-						<th class="qty">Quantity</th>
-						<th class="unit">Unit price</th>
+						<th class="desc">Descripcion</th>
+						<th class="qty">Cantidad</th>
+						<th class="unit">Precio Unitario</th>
 						<th class="total">Total</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr>
-						<td class="desc"><h3>Website Design</h3>Creating a recognizable design solution based on the company's existing visual identity</td>
-						<td class="qty">30</td>
-						<td class="unit">$40.00</td>
-						<td class="total">$1,200.00</td>
+						<td class="desc"><h3>Productos varios {{this.razonSocial}}</h3></td>
+						<td class="qty">1</td>
+						<td class="unit">{{this.importe}}</td>
+						<td class="total">{{this.importe}}</td>
 					</tr>
 				</tbody>
 			</table>
@@ -349,18 +348,12 @@
 							<td class="desc"></td>
 							<td class="qty"></td>
 							<td class="unit">SUBTOTAL:</td>
-							<td class="total">$5,200.00</td>
+							<td class="total">{{this.importe}}</td>
 						</tr>
 						<tr>
 							<td class="desc"></td>
-							<td class="qty"></td>
-							<td class="unit">TAX 25%:</td>
-							<td class="total">$1,300.00</td>
-						</tr>
-						<tr>
-							<td class="desc"></td>
-							<td class="unit" colspan="2">GRAND TOTAL:</td>
-							<td class="total">$6,500.00</td>
+							<td class="unit" colspan="2">TOTAL:</td>
+							<td class="total">{{this.importe}}</td>
 						</tr>
 					</tbody>
 				</table>
@@ -370,12 +363,10 @@
 
 	<footer>
 		<div class="container">
-			<div class="thanks">Thank you!</div>
+			<div class="thanks">¡Muchas gracias por confiar en nosotros!</div>
 			<div class="notice">
-				<div>NOTICE:</div>
-				<div>A finance charge of 1.5% will be made on unpaid balances after 30 days.</div>
+				<div>Antes de imprimir esta factura, piensa si es necesario hacerlo. El Medioambiente es cosa de todos.</div>
 			</div>
-			<div class="end">Invoice was created on a computer and is valid without the signature and seal.</div>
 		</div>
 	</footer>
 

@@ -6,20 +6,22 @@ const defaultOptions = {
     border: "10mm"
 }
 
-const defaultPath = "./Factura.pdf"
+const defaultPath = './Factura.pdf'
 
 class PdfCreator {
 
-    constructor(html, data, options=defaultOptions, path=defaultPath) {
-        
-        this.options=options
+    constructor(html, data, options, path=defaultPath) {
+                
+        if (options == null || options == {} || options == '') {
+            this.options=defaultOptions
+        }
+
 
         this.document = {
             html: html,
             data: data,
             path: path
         }
-
     }
     
     build() {
