@@ -14,7 +14,7 @@ async function testOk(){
         to: 'nadiaalebri@gmail.com',
         subject: 'PruebaConCambios1',
         text: 'Envío correcto de mail',
-        html: "<h1>Factura</h1><br>Saludos cordiales<br>",
+        html: "<h1>Factura</h1><br>Saludos cordiales<br>", //ESTE ES EL BODY DEL MAIL. SIN ESTO MUESTRA EL TEXT
         files: [archivoAdjunto],
     }
 

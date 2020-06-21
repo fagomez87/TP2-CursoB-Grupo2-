@@ -21,25 +21,22 @@ function validarTo(to){
     if(!to.includes('@')){
         throw new Error("el mail debe contener un '@'")
     }
-    if(!to.includes('.com')){
-        throw new Error("El mail debe contener '.com'")
-    }
 }
 
 function validarSubject(subject){
-    if(subject === ''){
+    if(subject === undefined || subject === ''){
         throw new Error("Se debe incluir un Asunto")
     }
 }
 
 function validarText(text){
-    if(text === ''){
+    if(text === undefined || text === ''){
         throw new Error("No debe estar vacio el Texto")
     }
 }
 
 function validarHtml(html){
-    if(html === ''){
+    if(html === undefined || html === ''){
         throw new Error("Debe contener información HTML")
     }
 }

@@ -1,8 +1,6 @@
 import PdfCreator from '../src/pdf/pdfCreator.js'
 import fs from 'fs'
 
-
-
 function testOK() {
     let html = fs.readFileSync('./src/static/integrantesTemplate.html', 'utf8');
     let data = fs.readFileSync('./src/static/integrantesData.json', 'utf8');
