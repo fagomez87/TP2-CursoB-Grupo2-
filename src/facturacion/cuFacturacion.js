@@ -4,7 +4,7 @@ import Gmailer from '../mail/GMailer.js'
 
 
 //DATOS DEL PDF
-const invoicesTemplate = fs.readFileSync('/home/fernandogomez/Desktop/otro/TP2-CursoB-Grupo2-/src/static/invoiceTemplate.html','utf8')
+const invoicesTemplate = fs.readFileSync('/Users/nortola/ORT/20201C/THP2/TP-final/TP2-CursoB-Grupo2-/src/static/invoiceTemplate.html','utf8')
 const invoicePdf = './Factura.pdf'
 
 class CUFacturacion {
@@ -45,14 +45,14 @@ class CUFacturacion {
 
         try {
             await this.pdfCreator.build() 
-        } catch(Error) {
+        } catch(err) {
             throw new Error("Falla al crear el pdf")
         }
 
         try {
             const mail = new Gmailer()
             await mail.sendMail(this.datosMail)
-        } catch(Error) {
+        } catch(err) {
             throw new Error("Error al enviar el mail")
         } 
     }

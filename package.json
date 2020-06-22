@@ -10,8 +10,9 @@
   "author": "Fernando Gomez",
   "license": "ISC",
   "dependencies": {
-    "pdf-creator-node": "^1.4.1",
+    "express": "^4.17.1",
     "gmail-send": "^1.8.10",
+    "pdf-creator-node": "^1.4.1",
     "request": "^2.88.0",
     "request-promise-native": "^1.0.7"
   }

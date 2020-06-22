@@ -6,11 +6,12 @@ function validarUsuario(user) {
 
 function asegurarDistanciaValida(distance) {
     if (distance < 0) {
-        throw new Error('Valor de distancia negativa') 
+        throw new Error('Valor de distancia negativa')  // revisar si es correcto
     }
 }
 
 function asegurarContenidoLista(lista) {
+    //if (!lista[0])
     if ( ! lista || lista.length == 0)  {
         throw new Error('Lista vacia')
     }
@@ -42,10 +43,10 @@ function filterByDistance(comerceList,distance,coords) {
     asegurarDistanciaValida(distance)
     asegurarContenidoLista(comerceList)
 
-    for (const obj of comerceList) {
-        dist = calcularDistancia( (obj['latitud']), (obj['longitud']), (coords['latitud']), (coords['longitud']))    
+    for (const commerce of comerceList) {
+        dist = calcularDistancia(commerce, coords)    
         if(dist <= distance) {
-            filtrados.push(obj) 
+            filtrados.push(commerce) 
         }
     }
     return filtrados

@@ -1,4 +1,4 @@
-import lib from '../src/library/libGeoloc.js'
+import lib from '../src/services/libGeoloc.js'
 
 // Set de datos de prueba
 const negocios = [

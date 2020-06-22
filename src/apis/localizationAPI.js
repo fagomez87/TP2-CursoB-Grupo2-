@@ -49,4 +49,6 @@ function validateCommerces(commerces) {
 }
 
 // TEST
-findCommercesNearCustomer('15285439875', 3).then((result) => console.log(result))
+// findCommercesNearCustomer('15285439875', 3).then((result) => console.log(result))
+
+export default { findCommercesNearCustomer }
