@@ -7,7 +7,6 @@ const customersDao = DaoFactory.getCustomersDao()
 
 async function findCommercesNearCustomer(cuil, maxDistance) {
   try {
-    // POR ACÁ PASÓ MÓNICA
     validateCuil(cuil)
     validateDistance(maxDistance)
 
@@ -27,7 +26,7 @@ async function findCommercesNearCustomer(cuil, maxDistance) {
     const commercesNearCustomer = Localizer.filterByDistance(commerces, maxDistance, coords)
     return commercesNearCustomer
   } catch (err) {
-    console.log('Error buscando comercios cercanos:', err.message)
+    throw err
   }
 }
 

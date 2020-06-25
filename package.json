@@ -5,7 +5,8 @@
   "description": "Generate a PDF file from scratch",
   "main": "index.js",
   "scripts": {
-    "test": "node test/testFacturacion.js"
+    "test": "node test/testFacturacion.js",
+    "start": "node src/server/main.js"
   },
   "author": "Fernando Gomez",
   "license": "ISC",

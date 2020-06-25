@@ -24,9 +24,9 @@ class PdfCreator {
         }
     }
     
-    build() {
+    async build() {
         try {
-            pdf.create(this.document, this.options);
+            await pdf.create(this.document, this.options);
             // PASAR EL PDF A UNA INTERMEDIA QUE TENGA LOS DATOS DE ENVIO DE MAIL // 
         } catch(e) {
             throw new Error("No se pudo crear el PDF")

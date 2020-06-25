@@ -1,6 +1,6 @@
-import Server from './app.js'
+import App from './app.js'
 
-const app = new Server()
+const app = new App()
 const port = process.env.PORT || 8085
 app.start(port)
 

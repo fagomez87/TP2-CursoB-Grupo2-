@@ -11,50 +11,28 @@ export default class Router {
     }
 
     configure() {
-        const { router } = this
+        const { router }  = this
         router.route('/geolocalizacion/comercioscercanos').post(async (req, res) => {
-            const data = req.body
-            const nearCommerces = await RequestManager.findCommercesNearCustomer(data.cuil, data.maxDistance)
-            res.json(nearCommerces)
+            try {
+                const data = req.body
+                const nearCommerces = await RequestManager.findCommercesNearCustomer(data.cuil, data.maxDistance)
+                res.json(nearCommerces)
+            } catch (err) {
+                res.status(500).send('Error buscando comercios cercanos: ' + err.message) 
+            }
         })
 
         // ACÁ HABRIA QUE REPLICAR LO DE ARRIBA CON EL CU DE FACTURACIÓN....
         router.route('/facturacion/generarfactura').post(async (req, res) => {
-            console.log(req.body)
-            
+            try {
+                const cuil = req.body.cuil
+                await RequestManager.generateInvoice(cuil)
+                res.send('Se envío la factura por mail al comprador')
+            } catch (err) {
+                res.status(500).send(err.message)
+            }
         })    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/* 
         router.route('/send').get(async (req, res) => {
             console.log('Requested send file')
             try {
@@ -73,7 +51,7 @@ export default class Router {
             } catch (error) {
                 res.status(500).send('Error ' + error)
             }
-        })
+        }) */
     }
 
     getRouter() {

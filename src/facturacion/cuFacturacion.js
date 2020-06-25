@@ -2,19 +2,19 @@ import fs from 'fs'
 import PdfCreator from '../pdf/pdfCreator.js'
 import Gmailer from '../mail/GMailer.js'
 
-
 //DATOS DEL PDF
 const invoicesTemplate = fs.readFileSync('/Users/nortola/ORT/20201C/THP2/TP-final/TP2-CursoB-Grupo2-/src/static/invoiceTemplate.html','utf8')
-const invoicePdf = './Factura.pdf'
+const invoicePdf = '/Users/nortola/ORT/20201C/THP2/TP-final/TP2-CursoB-Grupo2-/Factura.pdf'
 
 class CUFacturacion {
-    constructor (daoObject,mailObject){
+    constructor (daoObject) {
+        if(daoObject === undefined) throw Error("Cliente inexistente")
 
-        if(this.confirmarPago(daoObject)){
+        if (this.confirmarPago(daoObject)){
             //ESTE ES EL PDF CREADO SI NO FALLO
             this.pdfCreator = new PdfCreator(invoicesTemplate,daoObject,null,invoicePdf)
 
-            this.datosMail = this.armarDatosMail(mailObject) 
+            this.datosMail = this.armarDatosMail(daoObject.mail) 
 
         } else {
             throw new Error("Error al confirmar el pago: Pago no registrado")
@@ -53,7 +53,7 @@ class CUFacturacion {
             const mail = new Gmailer()
             await mail.sendMail(this.datosMail)
         } catch(err) {
-            throw new Error("Error al enviar el mail")
+            throw new Error("Error al enviar el mail " + err)
         } 
     }
 }
