@@ -1,34 +1,47 @@
 import Error from '../services/error.js'
-import DaoFactory from '../dao/daoFactory.js'
-import Localizer from '../services/libGeoloc.js'
 
-const commercesDao = DaoFactory.getCommercesDao()
-const customersDao = DaoFactory.getCustomersDao()
+class CommercesLocalizer {
+  constructor (customersDao,commercesDao,libGeoloc) {
+    
+    if(customersDao === undefined) {
+      throw Error('Clientes inexistentes')
+    }
+    if(commercesDao === undefined) {
+      throw Error('Comercios inexistentes')
+    }
+    if(libGeoloc === undefined) {
+      throw Error('Comercios inexistentes')
+    }
+    this.libGeoloc = libGeoloc
+    this.customersDao = customersDao
+    this.commercesDao = commercesDao
+  }
 
-async function findCommercesNearCustomer(cuil, maxDistance) {
-  try {
+  async run(cuil, maxDistance) {
     validateCuil(cuil)
     validateDistance(maxDistance)
-
-    const customer = await customersDao.getByCuil(cuil)
-
-    validateCustomer(customer)
-
-    const commerces = await commercesDao.getAll()
-
-    validateCommerces(commerces)
-
-    const coords = {
-      latitud: customer.latitud,
-      longitud: customer.longitud
+    try {
+      const customer = await this.customersDao.getByCuil(cuil)
+  
+      validateCustomer(customer)
+  
+      const commerces = await this.commercesDao.getAll()
+  
+      validateCommerces(commerces)
+  
+      const coords = {
+        latitud: customer.latitud,
+        longitud: customer.longitud
+      }
+  
+      const commercesNearCustomer = this.libGeoloc.filterByDistance(commerces, maxDistance, coords)
+      return commercesNearCustomer
+    } catch (err) {
+        throw Error('Ocurrió un error ' + err.message)
     }
-
-    const commercesNearCustomer = Localizer.filterByDistance(commerces, maxDistance, coords)
-    return commercesNearCustomer
-  } catch (err) {
-    throw err
   }
 }
+
 
 function validateCuil(cuil) {
   if ( !cuil || cuil === '' ) throw Error(400, 'cuil inválido')
@@ -47,7 +60,5 @@ function validateCommerces(commerces) {
   if ( !commerces || commerces.length <= 0 ) throw Error(500, 'listado de comercios inválido')
 }
 
-// TEST
-// findCommercesNearCustomer('15285439875', 3).then((result) => console.log(result))
 
-export default { findCommercesNearCustomer }
+export default CommercesLocalizer 

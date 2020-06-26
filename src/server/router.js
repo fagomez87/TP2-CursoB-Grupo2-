@@ -12,7 +12,7 @@ export default class Router {
 
     configure() {
         const { router }  = this
-        router.route('/geolocalizacion/comercioscercanos').post(async (req, res) => {
+        router.route('/comercios').post(async (req, res) => {
             try {
                 const data = req.body
                 const nearCommerces = await RequestManager.findCommercesNearCustomer(data.cuil, data.maxDistance)
@@ -22,7 +22,6 @@ export default class Router {
             }
         })
 
-        // ACÁ HABRIA QUE REPLICAR LO DE ARRIBA CON EL CU DE FACTURACIÓN....
         router.route('/facturacion/generarfactura').post(async (req, res) => {
             try {
                 const cuil = req.body.cuil

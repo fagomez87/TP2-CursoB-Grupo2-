@@ -11,7 +11,7 @@ export default class App {
         // middleware: configuro todo lo que necesito que tenga el servidor
 
         // todas las rutas van a ir al router
-        app.use('/', router)
+        app.use('/api', router)
         // express reconoce el formato json
         
 

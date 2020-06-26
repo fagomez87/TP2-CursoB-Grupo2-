@@ -3,7 +3,7 @@ import PdfCreator from '../pdf/pdfCreator.js'
 import Gmailer from '../mail/GMailer.js'
 
 //DATOS DEL PDF
-const invoicesTemplate = fs.readFileSync('/Users/nortola/ORT/20201C/THP2/TP-final/TP2-CursoB-Grupo2-/src/static/invoiceTemplate.html','utf8')
+const invoicesTemplate = fs.readFileSync('C:/Users/Monica/TP2-CursoB-Grupo2-/src/static/invoiceTemplate.html','utf8')
 const invoicePdf = '/Users/nortola/ORT/20201C/THP2/TP-final/TP2-CursoB-Grupo2-/Factura.pdf'
 
 class CUFacturacion {
