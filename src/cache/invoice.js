@@ -3,7 +3,7 @@ export const InvoiceCache =
     name: 'Mónica',
     surname: 'Bidart',
     cuil: '10348962310',
-    mail: 'faker@mail.com',
+    mail: 'fakermail.com',
     importe: 621.35,
     razonSocial:'SegundoSet',
     cuit: '2221'
