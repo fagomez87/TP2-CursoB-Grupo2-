@@ -12,17 +12,20 @@ export default class Router {
 
     configure() {
         const { router }  = this
-        router.route('/comercios').post(async (req, res) => {
+
+        router.route('/comercios').get(async (req, res) => {
             try {
-                const data = req.body
-                const nearCommerces = await RequestManager.findCommercesNearCustomer(data.cuil, data.maxDistance)
+                const cuil = req.query.cuil
+                const maxDistance = req.query.maxDistance
+
+                const nearCommerces = await RequestManager.findCommercesNearCustomer(cuil, maxDistance)
                 res.json(nearCommerces)
             } catch (err) {
                 res.status(500).send('Error buscando comercios cercanos: ' + err.message) 
             }
-        })
-
-        router.route('/facturacion/generarfactura').post(async (req, res) => {
+        })    
+        
+        router.route('/facturas').post(async (req, res) => {
             try {
                 const cuil = req.body.cuil
                 await RequestManager.generateInvoice(cuil)

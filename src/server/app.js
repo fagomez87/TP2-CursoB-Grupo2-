@@ -6,6 +6,7 @@ export default class App {
     constructor() {
         // me guardo express
         const app = express()
+       // app.use(bodyParser.urlencoded({ extended: false }));
         app.use(express.json())
         const router = Router.getInstance()
         // middleware: configuro todo lo que necesito que tenga el servidor
