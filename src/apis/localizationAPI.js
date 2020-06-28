@@ -4,13 +4,13 @@ class CommercesLocalizer {
   constructor (customersDao,commercesDao,libGeoloc) {
     
     if(customersDao === undefined) {
-      throw Error('Clientes inexistentes')
+      throw Error(404,'Clientes inexistentes')
     }
     if(commercesDao === undefined) {
-      throw Error('Comercios inexistentes')
+      throw Error(404,'Comercios inexistentes')
     }
     if(libGeoloc === undefined) {
-      throw Error('Comercios inexistentes')
+      throw Error(404,'Comercios inexistentes')
     }
     this.libGeoloc = libGeoloc
     this.customersDao = customersDao
@@ -37,7 +37,7 @@ class CommercesLocalizer {
       const commercesNearCustomer = this.libGeoloc.filterByDistance(commerces, maxDistance, coords)
       return commercesNearCustomer
     } catch (err) {
-        throw Error('Ocurrió un error ' + err.message)
+        throw Error(err.status, err.message || 'Origen de datos desconocido')
     }
   }
 }
@@ -52,12 +52,12 @@ function validateDistance(distance) {
 }
 
 function validateCustomer(customer) {
-  if ( !customer ) throw Error(400, 'cliente inexistente')
-  if ( customer.veraz ) throw Error(400, `El cliente ${customer.name} ${customer.surname} es sospechoso`)
+  if ( !customer ) throw Error(404, 'cliente inexistente')
+  if ( customer.veraz ) throw Error(410, `El cliente ${customer.name} ${customer.surname} es sospechoso`)
 }
 
 function validateCommerces(commerces) {
-  if ( !commerces || commerces.length <= 0 ) throw Error(500, 'listado de comercios inválido')
+  if ( !commerces || commerces.length <= 0 ) throw Error(413, 'Listado de comercios inválido')
 }
 
 

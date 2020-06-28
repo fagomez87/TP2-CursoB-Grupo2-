@@ -21,7 +21,7 @@ export default class Router {
                 const nearCommerces = await RequestManager.findCommercesNearCustomer(cuil, maxDistance)
                 res.json(nearCommerces)
             } catch (err) {
-                res.status(500).send('Error buscando comercios cercanos: ' + err.message) 
+                res.status(err.status || 500).send('Error buscando comercios cercanos: ' + err.message) 
             }
         })    
         
@@ -31,7 +31,7 @@ export default class Router {
                 await RequestManager.generateInvoice(cuil)
                 res.send('Se envío la factura por mail al comprador')
             } catch (err) {
-                res.status(500).send(err.message)
+                res.status(err.status || 500).send(err.message)
             }
         })    
 /* 
