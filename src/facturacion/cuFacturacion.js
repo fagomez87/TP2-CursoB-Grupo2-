@@ -1,11 +1,14 @@
 import fs from 'fs'
 import PdfCreator from '../pdf/pdfCreator.js'
 import Gmailer from '../mail/GMailer.js'
-import DaoFactory from '../dao/daoFactory.js'
+import path from 'path';
+
+const __dirname = path.resolve();
+
 
 //DATOS DEL PDF
-const invoicesTemplate = fs.readFileSync('C:/Users/nadia/tp2Nuevo/TP2-CursoB-Grupo2-/src/static/invoiceTemplate.html','utf8')
-const invoicePdf = './Factura.pdf'
+const invoicesTemplate = fs.readFileSync(__dirname + '/src/static/invoiceTemplate.html','utf8')
+const invoicePdf = __dirname + '/factura.pdf'
 
 class CUFacturacion {
     constructor (daoObject) {
@@ -17,6 +20,7 @@ class CUFacturacion {
     }
 
     async run(cuil) {  
+        console.log(__dirname + '/src/static/invoiceTemplate.html')
         let comprador = await this.daoObject.getByCuil(cuil) 
         if (this.confirmarPago(comprador)){
                 //ESTE ES EL PDF CREADO SI NO FALLO
