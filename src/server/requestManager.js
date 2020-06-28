@@ -3,7 +3,7 @@ import DaoFactory from '../dao/daoFactory.js'
 import CommercesLocalizer from '../apis/localizationAPI.js'
 import libGeo from '../services/libGeoloc.js'
 
-const invoiceDao = DaoFactory.getInvoicesDao();
+
 
 /**
  * 
@@ -20,9 +20,8 @@ async function findCommercesNearCustomer(cuil, maxDistance) {
  * @param {*} cuil 
  */
 async function generateInvoice (cuil) {
-    const daoObject = await invoiceDao.getByCuil(cuil)
-    const cuFacturacion = new CUFacturacion(daoObject)
-    await cuFacturacion.run()
+    const cuFacturacion = new CUFacturacion(DaoFactory.getInvoicesDao())
+    await cuFacturacion.run(cuil)
 }
 
 export default { findCommercesNearCustomer, generateInvoice }
