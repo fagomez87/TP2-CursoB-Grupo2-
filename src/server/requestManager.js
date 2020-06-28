@@ -6,7 +6,7 @@ import libGeo from '../services/libGeoloc.js'
 
 
 /**
- * 
+ * Método que retorna un listado con los comercios filtrados por la distancia
  * @param {*} cuil 
  * @param {*} maxDistance 
  */
