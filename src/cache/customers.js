@@ -14,7 +14,7 @@ export const customersCache =
     latitud: -34.6168483, // almagro
     longitud: -58.488353,
     cuil: '20365837210',
-    mail: "faker@mail.com",
+    mail: "fakerNico@mail.com",
     veraz: true
   },
   {
@@ -35,4 +35,3 @@ export const customersCache =
     mail: "nadiaalebri@gmail.com",
     veraz: false
   }]
-  

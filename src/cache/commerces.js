@@ -47,18 +47,18 @@ export const commercesCache =
   {
     name: 'getComercio6',
     surname: 'allInSix',
-    razonSocial: 'AMC 3620',
+    razonSocial: 'AMC 3920',
     type: 'domicilio',
     latitud: 6.17136,
     longitud: -75.58825,
-    cuit: '2225'
+    cuit: '2226'
   }, 
   {
     name: 'getComercio7',
     surname: 'allInSeven',
-    razonSocial: 'AMC 3620',
+    razonSocial: 'AMC 5990',
     type: 'domicilio',
     latitud: 6.33607,
     longitud: -75.56119,
-    cuit: '2225'
+    cuit: '2227'
   }]

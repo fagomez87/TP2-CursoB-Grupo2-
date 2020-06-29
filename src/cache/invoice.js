@@ -12,7 +12,7 @@ export const InvoiceCache =
     name: 'Nicolás',
     surname: 'Ortolá',
     cuil: '20365837210',
-    mail: 'faker@mail.com',
+    mail: 'fakerNico@mail.com',
     importe: 414.00,
     razonSocial: 'AMC 4420',
     cuit: '2224'
@@ -32,7 +32,7 @@ export const InvoiceCache =
     cuil: '20336758100',
     mail: 'nadiaalebri@gmail.com',
     importe: 0.0,
-    razonSocial: 'AMC 3620',
-    cuit: '2225'
+    razonSocial: 'AMC 3920',
+    cuit: '2226'
   }]
   
