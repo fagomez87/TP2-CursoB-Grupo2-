@@ -30,7 +30,7 @@ class InvoiceDao {
         throw Error(500, 'getById not implemented')
     }
 
-    async add(commerce) {
+    async create(invoice) {
         throw Error(500, 'add not implemented')
     }
 

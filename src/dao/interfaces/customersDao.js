@@ -22,7 +22,7 @@ class CustomersDao {
         throw Error(500, 'getById not implemented')
     }
 
-    async add(commerce) {
+    async create(customer) {
         throw Error(500, 'add not implemented')
     }
 

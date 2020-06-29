@@ -7,7 +7,7 @@ export const InvoiceCache =
     importe: 621.35,
     razonSocial:'SegundoSet',
     cuit: '2221'
-  }, 
+  },
   {
     name: 'Nicolás',
     surname: 'Ortolá',

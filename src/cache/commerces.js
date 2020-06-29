@@ -29,7 +29,7 @@ export const commercesCache =
   {
     name: 'getComercio4',
     surname: 'allInFour',
-    razonSocial: 'AMC 4420',
+    razonSocial: 'AMC4420',
     type: 'domicilio',
     latitud: -34.6242901,
     longitud: -58.4975828,

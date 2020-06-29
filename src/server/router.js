@@ -1,8 +1,15 @@
 import express from 'express'
 import path from 'path';
 import RequestManager from './requestManager.js'
+import CommercesDaoDB from '../dao/implementations/dbDaos/commercesDaoDB.js'
+import CustomerDaoDB from '../dao/implementations/dbDaos/customersDaoDB.js' 
+import InvoicesDaoDB from '../dao/implementations/dbDaos/invoicesDaoDB.js' 
 
 const __dirname = path.resolve();
+
+const commercesDao = new CommercesDaoDB()
+const customersDao = new CustomerDaoDB()
+const invoicesDao = new InvoicesDaoDB()
 
 export default class Router {
     constructor () {
@@ -33,7 +40,35 @@ export default class Router {
             } catch (err) {
                 res.status(err.status || 500).send(err.message)
             }
-        })    
+        })
+
+        router.route('/comercios').post(async (req, res) => {
+            try {
+                const commerce = req.body
+                const persistedCommerce = await commercesDao.create(commerce)
+                res.json(persistedCommerce)
+            } catch (err) {
+                res.status(err.status || 500).send(err.message)
+            }
+        })
+        router.route('/clientes').post(async (req, res) => {
+            try {
+                const customer = req.body
+                const persistedCustomer = await customersDao.create(customer)
+                res.json(persistedCustomer)
+            } catch (err) {
+                res.status(err.status || 500).send(err.message)
+            }
+        })
+        router.route('/ventas').post(async (req, res) => {
+            try {
+                const invoice = req.body
+                const persistedInvoice = await invoicesDao.create(invoice)
+                res.json(persistedInvoice)
+            } catch (err) {
+                res.status(err.status || 500).send(err.message)
+            }
+        })            
 /* 
         router.route('/send').get(async (req, res) => {
             console.log('Requested send file')

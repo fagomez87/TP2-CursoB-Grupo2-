@@ -22,6 +22,10 @@ class CustomersDaoCache extends CustomersDao {
     async getById(id) {
       return this.customers.filter(c => c._id === id)
     }
+    
+    async create (customer) {
+      await this.customers.push(customer)
+    }
 }
 
 export default CustomersDaoCache

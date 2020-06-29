@@ -21,7 +21,10 @@ class CUFacturacion {
     }
 
     async run(cuil) {  
-        let comprador = await this.daoObject.getByCuil(cuil) 
+        let comprador = await this.daoObject.getByCuil(cuil)
+        if (comprador === undefined) 
+            throw Error(404,"Cliente inexistente")
+
         if (this.confirmarPago(comprador)){
                 //ESTE ES EL PDF CREADO SI NO FALLO
             this.pdfCreator = new PdfCreator(invoicesTemplate,comprador,null,invoicePdf)
