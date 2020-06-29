@@ -3,8 +3,6 @@ import DaoFactory from '../dao/daoFactory.js'
 import CommercesLocalizer from '../apis/localizationAPI.js'
 import libGeo from '../services/libGeoloc.js'
 
-
-
 /**
  * Método que retorna un listado con los comercios filtrados por la distancia
  * @param {*} cuil 
@@ -24,4 +22,22 @@ async function generateInvoice (cuil) {
     await cuFacturacion.run(cuil)
 }
 
-export default { findCommercesNearCustomer, generateInvoice }
+async function insertCustomer(customerJson) {
+    const customersDao = DaoFactory.getCustomersDao()
+    return await customersDao.create(customerJson)
+}
+
+async function insertCommerce(commerceJson) {
+    // Obtiene el DAO con el factory (puede ser caché o db segun la config)
+    const commercesDao = DaoFactory.getCommercesDao()
+    // El create está implementado en la Super clase, dao/interfaces/commercesDao, ya que
+    // realiza procesos comunes a todos los daos
+    return await commercesDao.create(commerceJson)
+}
+
+async function insertInvoice(invoiceJson) {
+    const invoicesDao = DaoFactory.getInvoicesDao()
+    return await invoicesDao.create(invoiceJson)
+}
+
+export default { findCommercesNearCustomer, generateInvoice, insertCustomer, insertCommerce, insertInvoice }

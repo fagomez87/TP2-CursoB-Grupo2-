@@ -5,7 +5,7 @@ class InvoicesDaoDB extends InvoiceDao {
   constructor() {
     super()
   }
-  async create(invoiceJson) {
+  async doCreate(invoiceJson) {
     const invoice = new Invoice()
   
     const { cuil, cuit, name, surname, mail, importe, razonSocial } = invoiceJson

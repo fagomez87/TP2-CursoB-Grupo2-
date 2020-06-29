@@ -1,4 +1,5 @@
 import Error from '../../services/error.js' 
+import Joi from '@hapi/joi'
 
 class InvoiceDao {
 
@@ -30,7 +31,12 @@ class InvoiceDao {
         throw Error(500, 'getById not implemented')
     }
 
-    async create(invoice) {
+    async create(invoiceJson) {
+        this.validate(invoiceJson)
+        return await this.doCreate(invoiceJson)
+    }
+
+    async doCreate(commerce) {
         throw Error(500, 'add not implemented')
     }
 
@@ -40,6 +46,23 @@ class InvoiceDao {
 
     async deleteAll() {
         throw Error(500, 'deleteAll not implemented')
+    }
+
+    validate(invoiceJson) {
+        const schema = Joi.object({
+            cuil: Joi.string().required(),
+            cuit: Joi.string().required(),
+            name: Joi.string().required(),
+            surname: Joi.string().required(),
+            importe: Joi.number().required(),
+            razonSocial: Joi.string().required(),
+            mail: Joi.string().required(),
+
+        });
+        const { error } = schema.validate(invoiceJson)
+        if (error) {
+            throw error
+        }    
     }
 }
 

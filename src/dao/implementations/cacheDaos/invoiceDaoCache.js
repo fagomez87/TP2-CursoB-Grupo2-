@@ -4,31 +4,35 @@ import { InvoiceCache } from '../../../cache/invoice.js'
 class InvoiceDaoCache extends InvoiceDao {
     constructor () {
       super()
-      this.invoice = InvoiceCache
+      this.invoices = InvoiceCache
     }
 
     async getAll() {
-      return this.invoice
+      return this.invoices
     }
 
     async getByName(name) {
-      return this.invoice.filter(c => c.name.includes(name))
+      return this.invoices.filter(c => c.name.includes(name))
     }
 
     async getByCuil(cuil) {
-      return this.invoice.filter(c => c.cuil === cuil)[0]
+      return this.invoices.filter(c => c.cuil === cuil)[0]
     }
 
     async getByRazonSocial(razonSocial) {
-        return this.invoice.filter(c => c.razonSocial.includes(razonSocial))
+        return this.invoices.filter(c => c.razonSocial.includes(razonSocial))
       }
   
       async getByCuit(cuit) {
-        return this.invoice.filter(c => c.cuit === cuit)[0]
+        return this.invoices.filter(c => c.cuit === cuit)[0]
       }
 
     async getById(id) {
-      return this.invoice.filter(c => c._id === id)
+      return this.invoices.filter(c => c._id === id)
+    }
+    async doCreate(invoiceJson) {
+      const length = this.invoices.push(invoiceJson)
+      return this.invoices[length - 1]
     }
 }
 

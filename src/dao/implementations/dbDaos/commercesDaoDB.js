@@ -8,7 +8,7 @@ class CommercesDaoDB extends CommercesDao {
   async getAll() {
     return await Commerce.find()
   }
-  async create(commerceJson) {
+  async doCreate(commerceJson) {
     const commerce = new Commerce()
   
     const { cuit, name, surname, razonSocial, type, latitud, longitud } = commerceJson

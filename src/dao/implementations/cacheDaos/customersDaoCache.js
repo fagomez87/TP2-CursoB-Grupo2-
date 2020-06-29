@@ -23,8 +23,9 @@ class CustomersDaoCache extends CustomersDao {
       return this.customers.filter(c => c._id === id)
     }
     
-    async create (customer) {
-      await this.customers.push(customer)
+    async doCreate (customerJson) {
+      const length = this.customers.push(customerJson)
+      return this.customers[length - 1]
     }
 }
 

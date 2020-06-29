@@ -26,7 +26,7 @@ class CustomersDaoDB extends CustommersDao {
       return await Customer.findById(id)
   }
 
-  async create(customerJson) {
+  async doCreate(customerJson) {
     const customer = new Customer()
   
     const { cuil, name, surname, mail, veraz, latitud, longitud } = customerJson

@@ -1,4 +1,5 @@
 import Error from '../../services/error.js'
+import Joi from '@hapi/joi'
 
 class CommercesDao {
 
@@ -18,7 +19,15 @@ class CommercesDao {
         throw Error(500, 'getById not implemented')
     }
 
-    async create(commerce) {
+    async create(commerceJson) {
+        // proceso común a todas las implementaciones de este dao. Primero se valida la
+        // entrada de datos usando JOI y luego se llama al doCreate(), que está implementado
+        // en cada DAO (cache y db)
+        this.validate(commerceJson)
+        return await this.doCreate(commerceJson)
+    }
+
+    async doCreate(commerce) {
         throw Error(500, 'add not implemented')
     }
 
@@ -28,6 +37,23 @@ class CommercesDao {
 
     async deleteAll() {
         throw Error(500, 'deleteAll not implemented')
+    }
+
+    // Replicamos la validación que realiza en última instancia la persistencia de mongoDB
+    validate(commerceJson) {
+        const schema = Joi.object({
+            cuit: Joi.string().required(),
+            name: Joi.string().required(),
+            surname: Joi.string().required(),
+            razonSocial: Joi.string().required(),
+            type: Joi.string().required(),
+            latitud: Joi.number().required(),
+            longitud: Joi.number().required()
+        });
+        const { error } = schema.validate(commerceJson)
+        if (error) {
+            throw error
+        }    
     }
 }
 
