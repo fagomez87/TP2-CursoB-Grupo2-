@@ -48,7 +48,8 @@ function validateCuil(cuil) {
 }
 
 function validateDistance(distance) {
-  if ( !distance || distance <= 0 ) throw Error(400, 'distancia inválida',3001)
+  distance = Number(distance)
+  if ( !distance || distance <= 0  || Number.isNaN(distance) ) throw Error(400, 'distancia inválida',3001)
 }
 
 function validateCustomer(customer) {
