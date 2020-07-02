@@ -43,7 +43,7 @@ class CUFacturacion {
             await mail.sendMail(this.datosMail)
             return invoicePdf
         } catch(err) {
-            throw Error(err.status, "Error al enviar el mail " + err.message)
+            throw Error(err.status, "Error al enviar el mail: " + err.message)
         } 
     } 
     
