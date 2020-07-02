@@ -1,4 +1,4 @@
-export default (status, code, msg) => {
+export default (status, msg, code) => {
     let message = msg
     if (status)
         err.status = status
