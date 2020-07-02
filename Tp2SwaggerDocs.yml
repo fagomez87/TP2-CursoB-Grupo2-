@@ -1,7 +1,11 @@
-openapi: 3.0.0
+swagger: 2.0
 info:
   version: "1.0-oas3"
   title: TP2--TestApi
+host: "localhost:8085"
+basePath: "/api"
+schemes: 
+  - "http"
 paths:
   /comercios:
     get:
