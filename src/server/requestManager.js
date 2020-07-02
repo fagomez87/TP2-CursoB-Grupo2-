@@ -1,7 +1,7 @@
 import CUFacturacion from '../../src/facturacion/cuFacturacion.js'
 import DaoFactory from '../dao/daoFactory.js'
-import CommercesLocalizer from '../apis/localizationAPI.js'
-import libGeo from '../services/libGeoloc.js'
+import CommercesLocalizer from '../geolocalizacion/cuGeolocalizacion.js'
+import libGeo from '../geolocalizacion/libGeoloc.js'
 
 /**
  * Método que retorna un listado con los comercios filtrados por la distancia
@@ -14,7 +14,7 @@ async function findCommercesNearCustomer(cuil, maxDistance) {
 }
 
 /**
- * 
+ * Método que genera una factura a partir de un cuil y la envía por mail. 
  * @param {*} cuil 
  */
 async function generateInvoice (cuil) {

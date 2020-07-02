@@ -11,7 +11,6 @@ function asegurarDistanciaValida(distance) {
 }
 
 function asegurarContenidoLista(lista) {
-    //if (!lista[0])
     if ( ! lista || lista.length == 0)  {
         throw new Error('Lista vacia')
     }

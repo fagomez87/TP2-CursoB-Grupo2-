@@ -1,8 +1,5 @@
 import express from 'express'
-import path from 'path';
 import RequestManager from './requestManager.js'
-
-const __dirname = path.resolve();
 
 export default class Router {
     constructor () {
@@ -65,26 +62,6 @@ export default class Router {
                 res.status(err.status || 500).send(err.message)
             }
         })            
-/* 
-        router.route('/send').get(async (req, res) => {
-            console.log('Requested send file')
-            try {
-                const filePath = __dirname + '/src/sample-files/samplePDF1.pdf'
-                res.status(200).sendFile(filePath)
-            } catch (error) {
-                res.status(500).send('Error ' + error)
-            }
-        })
-
-        router.route('/download').get(async (req, res) => {
-            console.log('Requested download file')
-            try {
-                const filePath = __dirname + '/src/sample-files/samplePDF2.pdf'
-                res.status(200).download(filePath)
-            } catch (error) {
-                res.status(500).send('Error ' + error)
-            }
-        }) */
     }
 
     getRouter() {
