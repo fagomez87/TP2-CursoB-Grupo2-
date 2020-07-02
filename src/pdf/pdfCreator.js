@@ -44,19 +44,19 @@ function validate(document) {
 
 function validateHtml(html) {
     if ( html == null || html == '' ) {
-        throw Error(400, "El formato de la factura está vacío")
+        throw Error(400, "El formato de la factura está vacío",2049)
     }
 }
 
 function validateData(jsonData) {
     if ( jsonData == null || jsonData == {} ) {
-        throw Error(400, "Los datos de la factura no pueden estar vacíos")
+        throw Error(400, "Los datos de la factura no pueden estar vacíos",2050)
     }
 }
 
 function validatePath(path) {
     if ( path == null || path == '') {
-        throw Error(400, "La ruta de destino de la factura no puede estar vacía")
+        throw Error(400, "La ruta de destino de la factura no puede estar vacía",2051)
     }
 }
 

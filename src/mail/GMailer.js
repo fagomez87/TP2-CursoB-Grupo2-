@@ -1,4 +1,5 @@
 import { createRequire } from 'module';
+import Error from '../services/error.js'
 let res = createRequire(import.meta.url);
 
 import send from 'gmail-send';
@@ -19,31 +20,31 @@ function validar({to,subject,text,html,files}){
 
 function validarTo(to){
     if(!to.includes('@')){
-        throw new Error("el mail debe contener un '@'")
+        throw Error(400, "El mail debe contener un '@'",2045)
     }
 }
 
 function validarSubject(subject){
     if(subject === undefined || subject === ''){
-        throw new Error("Se debe incluir un Asunto")
+        throw Error(400, "Se debe incluir un Asunto",2046)
     }
 }
 
 function validarText(text){
     if(text === undefined || text === ''){
-        throw new Error("No debe estar vacio el Texto")
+        throw Error(400, "No debe estar vacio el Texto",2047)
     }
 }
 
 function validarHtml(html){
     if(html === undefined || html === ''){
-        throw new Error("Debe contener información HTML")
+        throw Error(400, "Debe contener información HTML",2048)
     }
 }
 
 function validarFiles(files){
     if(!files.lenght<0){
-        throw new Error("No se ajunta factura")
+        throw Error(404, "No se adjunta factura")
     }
 }
 
@@ -57,7 +58,7 @@ class GMailer {
         try {
             res = await send(this.credenciales)(content);
         } catch (e){
-            throw new Error("ERROR: " + e)
+            throw Error("ERROR: " + e)
         }
     }
 }

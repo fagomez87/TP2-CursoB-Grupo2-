@@ -1,0 +1,104 @@
+swagger: '2.0'
+info:
+  version: '1.0'
+  title: TP2--TestApi
+  contact: {}
+host: localhost:8085
+basePath: /api
+schemes:
+- http
+consumes:
+- application/json
+produces:
+- application/json
+paths:
+  /comercios:
+    get:
+      summary: Buscar comercios cercanos
+      tags:
+      - Misc
+      operationId: Buscarcomerciosceranos
+      deprecated: false
+      produces:
+      - application/json
+      parameters:
+      - name: cuil
+        in: query
+        required: true
+        type: integer
+        format: int64
+        description: ''
+      - name: maxDistance
+        in: query
+        required: true
+        type: number
+        format: double
+        description: ''
+      responses:
+        200:
+          description: 'Retorna una lista de comercios filtrados por distancia'
+          headers: {}
+        400:
+          description: 'Cuil invalido'
+          headers: {}
+        404:
+          description: 'Entidad inexistentes'
+          headers: {}
+        410:
+          description: 'El cliente es sospechoso'
+          headers: {}
+        413:
+          description: 'Listado de comercios inválido'
+          headers: {}
+        500:
+          description: 'Origen de datos desconocido'
+          headers: {}
+  /facturas:
+    post:
+      summary: Generar factura
+      tags:
+      - Misc
+      operationId: Generarfactura
+      deprecated: false
+      produces:
+      - application/json
+      parameters:
+      - name: Body
+        in: body
+        required: true
+        description: ''
+        schema:
+          $ref: '#/definitions/GenerarfacturaRequest'
+      responses:
+        200:
+          description: 'Se envió la factura por mail al comprador'
+          headers: {}
+        400:
+          description: "Entrada de datos inválidos"
+          headers: {}
+        404:
+          description: "Error al enviar el mail\n### Error codes:\nCode | Message\n----------------|-------------\n2045 | El mail debe contener un '@'\n2046 | Se debe incluir un Asunto\n2047 | No debe estar vacio el Texto\n2048 | Debe contener información HTML"
+          headers: {}
+        410:
+          description: "Falla al crear el pdf\n### Error codes:\nCode | Message\n----------------|----------------\n2049 | El formato de la factura está vacío\n2050 | Los datos de la factura no pueden estar vacíos\n2051 | La ruta de destino de la factura no puede estar vacía"
+          headers: {}
+        413:
+          description: 'Listado de comercios inválido'
+          headers: {}
+        500:
+          description: 'Origen de datos desconocido'
+          headers: {}
+definitions:
+  GenerarfacturaRequest:
+    title: GenerarfacturaRequest
+    example:
+      cuil: 784784
+    type: object
+    properties:
+      cuil:
+        type: string
+    required:
+    - cuil
+tags:
+- name: Misc
+  description: ''
