@@ -19,7 +19,7 @@ async function findCommercesNearCustomer(cuil, maxDistance) {
  */
 async function generateInvoice (cuil) {
     const cuFacturacion = new CUFacturacion(DaoFactory.getInvoicesDao())
-    await cuFacturacion.run(cuil)
+    return await cuFacturacion.run(cuil)
 }
 
 async function insertCustomer(customerJson) {

@@ -12,6 +12,7 @@ class CommercesDaoDB extends CommercesDao {
     const commerce = new Commerce()
   
     const { cuit, name, surname, razonSocial, type, latitud, longitud } = commerceJson
+
     commerce.cuit = cuit
     commerce.name = name
     commerce.surname = surname

@@ -8,7 +8,7 @@ const invoiceSchema = new Schema ({
   name: { type: String, required: true },
   surname: { type: String, required: true },
   importe: { type: Number, required: true },
-  mail: { type: String, required: true, unique: true },
+  mail: { type: String, required: true },
   razonSocial: { type: String, required: true }
 })
 

@@ -41,6 +41,7 @@ class CUFacturacion {
         try {
             const mail = new Gmailer()
             await mail.sendMail(this.datosMail)
+            return invoicePdf
         } catch(err) {
             throw Error(err.status, "Error al enviar el mail " + err.message)
         } 

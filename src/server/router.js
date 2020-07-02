@@ -28,8 +28,9 @@ export default class Router {
         router.route('/facturas').post(async (req, res) => {
             try {
                 const cuil = req.body.cuil
-                await RequestManager.generateInvoice(cuil)
-                res.send('Se envío la factura por mail al comprador')
+                const filePath = await RequestManager.generateInvoice(cuil)
+                res.status(200).download(filePath, 'Factura')
+                // res.send('Se envío la factura por mail al comprador')
             } catch (err) {
                 res.status(err.status || 500).send(err.message)
             }

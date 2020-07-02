@@ -1,7 +1,6 @@
 import express from 'express'
 import Router from './router.js'
 import mongoose from 'mongoose'
-import Config from '../../config.js'
 import config from '../../config.js'
 
 export default class App {
@@ -25,11 +24,7 @@ export default class App {
 
     start(port) {
         // conectarse a la base de datos según el modo configurado (db o caché)
-        initDataBase[config.mode]()
-        if (config.mode === 'db') {
-
-        }
-        
+        initDataBase[config.mode]()   
         this.app.listen(port, () => {
             console.log(`- - - Server ready. Listening on port ${port} - - -`)
         })
