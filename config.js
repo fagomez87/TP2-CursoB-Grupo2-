@@ -1,5 +1,5 @@
 const config = {
-    mode: 'db'
+    mode: 'cache'
   }
   
   export default config
