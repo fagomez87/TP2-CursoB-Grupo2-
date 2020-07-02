@@ -1,0 +1,130 @@
+openapi: 3.0.0
+info:
+  version: "1.0-oas3"
+  title: TP2--TestApi
+paths:
+  /comercios:
+    get:
+      summary: Buscar comercios cercanos
+      tags:
+        - Misc
+      operationId: Buscarcomerciosceranos
+      deprecated: false
+      parameters:
+        - name: cuil
+          in: query
+          required: true
+          description: ''
+          schema:
+            type: integer
+            format: int64
+        - name: maxDistance
+          in: query
+          required: true
+          description: ''
+          schema:
+            type: number
+            format: double
+      responses:
+        '200':
+          description: Retorna una lista de comercios filtrados por distancia
+          headers: {}
+        '400':
+          description: |-
+            Formato de datos inválido
+            ### Error codes:
+            Code | Message
+            ----------------|----------------
+            3000 | Cuil inválido
+            3001 | Distancia inválida
+          headers: {}
+        '404':
+          description: |-
+            Entidad inexistente
+            ### Error codes:
+            Code | Message
+            ----------------|----------------
+            3002 | Repositorio de clientes inexistente
+            3003 | Repositorio de comercios inexistente
+            3004 | Comercios inexistentes
+            3005 | Cliente inexistente
+          headers: {}
+        '410':
+          description: El cliente es sospechoso
+          headers: {}
+        '413':
+          description: Listado de comercios inválido
+          headers: {}
+        '500':
+          description: Error desconocido
+          headers: {}
+  /facturas:
+    post:
+      summary: Generar factura
+      tags:
+        - Misc
+      operationId: Generarfactura
+      deprecated: false
+      responses:
+        '200':
+          description: Se envió la factura por mail al comprador
+          headers: {}
+        '400':
+          description: |-
+            Entrada de datos inválida
+            ### Error codes:
+            Code | Message
+            ----------------|-------------
+            2043 | Cliente inexistente
+            2044 | Error al confirmar el pago: Pago no registrado
+          headers: {}
+        '404':
+          description: |-
+            Error al enviar el mail
+            ### Error codes:
+            Code | Message
+            ----------------|-------------
+            2045 | El mail debe contener un '@'
+            2046 | Se debe incluir un asunto
+            2047 | No debe estar vacio el texto
+            2048 | Debe contener información HTML
+          headers: {}
+        '410':
+          description: |-
+            Falla al crear el pdf
+            ### Error codes:
+            Code | Message
+            ----------------|----------------
+            2049 | El formato de la factura está vacío
+            2050 | Los datos de la factura no pueden estar vacíos
+            2051 | La ruta de destino de la factura no puede estar vacía
+          headers: {}
+        '413':
+          description: Listado de comercios inválido
+          headers: {}
+        '500':
+          description: Error desconocido
+          headers: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GenerarfacturaRequest'
+        required: true
+tags:
+  - name: Misc
+    description: ''
+servers:
+  - url: 'http://localhost:8085/api'
+components:
+  schemas:
+    GenerarfacturaRequest:
+      title: GenerarfacturaRequest
+      example:
+        cuil: 784784
+      type: object
+      properties:
+        cuil:
+          type: string
+      required:
+        - cuil

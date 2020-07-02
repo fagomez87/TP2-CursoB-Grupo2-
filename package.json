@@ -11,6 +11,7 @@
   "author": "Fernando Gomez",
   "license": "ISC",
   "dependencies": {
+    "@hapi/joi": "^17.1.1",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "gmail-send": "^1.8.10",
@@ -18,7 +19,7 @@
     "pdf-creator-node": "^1.4.1",
     "request": "^2.88.0",
     "request-promise-native": "^1.0.7",
-    "@hapi/joi": "^17.1.1"
+    "swagger-ui-express": "^4.1.4"
   },
   "devDependencies": {
     "handlebars": "^4.5.0",

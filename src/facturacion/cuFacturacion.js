@@ -23,14 +23,14 @@ class CUFacturacion {
     async run(cuil) {  
         let comprador = await this.daoObject.getByCuil(cuil)
         if (comprador === undefined) 
-            throw Error(404,"Cliente inexistente")
+            throw Error(400,"Cliente inexistente",2043)
 
         if (this.confirmarPago(comprador)){
                 //ESTE ES EL PDF CREADO SI NO FALLO
             this.pdfCreator = new PdfCreator(invoicesTemplate,comprador,null,invoicePdf)
             this.datosMail = this.armarDatosMail(comprador.mail)         
         } else {
-            throw Error(400,"Error al confirmar el pago: Pago no registrado")
+            throw Error(400,"Error al confirmar el pago: Pago no registrado", 2044)
         }
         try {
             await this.pdfCreator.build() 
@@ -43,7 +43,7 @@ class CUFacturacion {
             await mail.sendMail(this.datosMail)
             return invoicePdf
         } catch(err) {
-            throw Error(err.status, "Error al enviar el mail: " + err.message)
+            throw Error(err.status, "Error al enviar el mail: " + err.message || 'Error desconocido', err.code)
         } 
     } 
     
