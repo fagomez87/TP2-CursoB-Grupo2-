@@ -2,10 +2,14 @@ import express from 'express'
 import Router from './router.js'
 import mongoose from 'mongoose'
 import config from '../../config.js'
+import swaggerUi from 'swagger-ui-express'
+import fs from 'fs'
+
 
 export default class App {
 
     constructor() {
+        const swaggerDoc = fs.readFileSync('./Tp2SwaggerDocs.yml')
         // me guardo express
         const app = express()
        // app.use(bodyParser.urlencoded({ extended: false }));
@@ -16,7 +20,9 @@ export default class App {
         // todas las rutas van a ir al router
         app.use('/api', router)
         // express reconoce el formato json
-        
+
+        // configura la ruta para que levante la docu
+        app.use('/api-docs',swaggerUi.serve, swaggerUi.setup(swaggerDoc))
 
         // me guardo en la instancia de App el servidor
         this.app = app
